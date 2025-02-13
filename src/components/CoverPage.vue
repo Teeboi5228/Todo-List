@@ -3,7 +3,7 @@
     <div class="brand-container">
       <img
         src="../assets/logo.png"
-        class="brand animate__animated animate__heartBeat animate__slower animate__infinite"
+        class="brand animate__animated animate__pulse animate__slower"
         alt=""
       />
     </div>
