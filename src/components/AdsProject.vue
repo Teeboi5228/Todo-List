@@ -1,34 +1,47 @@
 <template>
   <!-- container -->
   <div class="container">
-    <!-- advert-button -->
-    <div class="advert-button">
-      <button>Skip</button>
-    </div>
-
-    <!-- advert-img -->
-    <div class="advert-img">
-      <img :src="img" alt="" />
-    </div>
-
-    <!-- welcome -->
-    <div class="welcome">
-      <h3>Welcome to <span>Taskly</span></h3>
-      <p>{{ content[imgIndex] }}</p>
-
-      <!-- welcome-btn -->
-      <div class="welcome-btn">
-        <button @click="nextImage">Next</button>
+    <div v-if="showPreSignup">
+      <!-- advert-button -->
+      <div class="advert-button" v-show="!skip">
+        <button>Skip</button>
       </div>
 
-      <!-- scroll -->
-      <div class="scroll">
-        <div class="scroll1" :class="imgIndex === 0 ? 'active' : ''"></div>
-        <div class="scroll2" :class="imgIndex === 1 ? 'active' : ''"></div>
-        <div class="scroll3" :class="imgIndex === 2 ? 'active' : ''"></div>
+      <!-- advert-img -->
+      <div class="advert-img">
+        <img :src="img" alt="" />
+      </div>
+
+      <!-- welcome -->
+      <div class="welcome">
+        <h3>Welcome to <span>Taskly</span></h3>
+        <p>{{ content[imgIndex] }}</p>
+
+        <!-- welcome-btn -->
+        <div class="welcome-btn">
+          <button @click="nextImage">Next</button>
+        </div>
+
+        <!-- scroll -->
+        <div class="scroll">
+          <div class="scroll1" :class="imgIndex === 0 ? 'active' : ''"></div>
+          <div class="scroll2" :class="imgIndex === 1 ? 'active' : ''"></div>
+          <div class="scroll3" :class="imgIndex === 2 ? 'active' : ''"></div>
+        </div>
       </div>
     </div>
 
+    <!-- preloader -->
+    <div class="preloader" v-show="showPreloader">
+      <PreloaderVue />
+    </div>
+
+    <!-- pre-signup -->
+    <div class="pre-signup" v-show="!showPreSignup">
+      <PreSignupVue />
+    </div>
+
+    <!-- footer -->
     <footer>
       <TermsFooterPageVue />
     </footer>
@@ -36,11 +49,15 @@
 </template>
 
 <script>
+import PreSignupVue from "./PreSignup.vue";
 import TermsFooterPageVue from "./TermsFooterPage.vue";
+import PreloaderVue from "./Preloader.vue";
 export default {
   name: "AdsProjectVue",
   components: {
     TermsFooterPageVue,
+    PreSignupVue,
+    PreloaderVue,
   },
   data() {
     return {
@@ -55,16 +72,29 @@ export default {
         "Effortlessly manage your tasks and achieve more.",
       ],
       imgIndex: 0,
+      showPreSignup: true,
+      showPreloader: false,
     };
   },
   computed: {
     img() {
       return this.images[this.imgIndex];
     },
+    skip() {
+      return this.imgIndex === 2 || this.imgIndex === 3;
+    },
   },
   methods: {
     nextImage() {
-      this.imgIndex = (this.imgIndex + 1) % this.images.length;
+      this.imgIndex = this.imgIndex + 1;
+
+      if (this.imgIndex === 3) {
+        this.showPreSignup = false;
+        this.showPreloader = true;
+        setTimeout(() => {
+          this.showPreloader = false;
+        }, 1000);
+      }
     },
   },
 };
@@ -176,6 +206,18 @@ footer {
   bottom: 0;
   left: 0;
   right: 0;
+  z-index: 500;
+}
+
+.preloader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 1000;
+  transition: all 0.5s ease-in-out;
 }
 
 @media (min-height: 500px) {

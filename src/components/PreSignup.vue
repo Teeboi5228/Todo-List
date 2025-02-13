@@ -1,22 +1,24 @@
 <template>
- <div class="container">
+  <div class="container">
     <div class="login-box">
       <!-- Header -->
       <div class="header">
-        <h1 class="title">
-          <span class="checkmark">✔</span> Taskly
-        </h1>
-        <button class="login-btn" >Log In</button>
+        <h1 class="title"><span class="checkmark">✔</span> Taskly</h1>
+        <button class="login-btn">Log In</button>
       </div>
 
       <!-- Illustration -->
-      <img src="..\assets\preSignUP-1.png" alt="Taskly Illustration" class="illustration" />
+      <img
+        src="..\assets\preSignUP-1.png"
+        alt="Taskly Illustration"
+        class="illustration"
+      />
 
       <!-- Subtitle -->
       <p class="subtitle">Stay Organized. Stay Focused. Get Things Done</p>
 
       <!-- Signup Button -->
-      <button class="btn signup-btn" >Sign Up</button>
+      <button class="btn signup-btn">Sign Up</button>
 
       <!-- Separator -->
       <div class="separator">
@@ -25,12 +27,12 @@
 
       <!-- Social Logins -->
       <div class="button-group">
-        <button class="btn apple" >
-<i class="fa-brands fa-apple"></i>
+        <button class="btn apple">
+          <i class="fa-brands fa-apple"></i>
           Continue with Apple
         </button>
         <button class="btn google">
-<i class="fa-brands fa-google"></i>
+          <i class="fa-brands fa-google"></i>
           Continue with Google
         </button>
       </div>
@@ -38,20 +40,19 @@
       <!-- Terms -->
       <p class="terms">
         By continuing, you agree to Taskly's
-        <a href="#">Terms of Service</a>,
-        <a href="#">Privacy Policy</a>, and
+        <a href="#">Terms of Service</a>, <a href="#">Privacy Policy</a>, and
         <a href="#">Cookies Policy</a>.
       </p>
     </div>
   </div>
 </template>
 
-<script setup>
-
+<script>
+export default {
+  name: "PreSignup",
+};
 </script>
 <style scoped>
-
-
 /* General Styles */
 body {
   font-family: Arial, sans-serif;
@@ -70,6 +71,7 @@ body {
   align-items: center;
   padding: 20px;
   width: 100%;
+  transition: all 0.5s ease-in-out;
 }
 
 .login-box {
@@ -94,27 +96,27 @@ body {
   font-weight: bold;
   display: flex;
   align-items: center;
-  color:#09203E;
+  color: #09203e;
 }
 
 .checkmark {
-  color:  #09203E;
+  color: #09203e;
   margin-right: 5px;
 }
 
 .login-btn {
   background: none;
-   border: 1.5px solid #09203E;
+  border: 1.5px solid #09203e;
   padding: 6px 12px;
   border-radius: 5px;
-  color: #09203E;
+  color: #09203e;
   font-size: 14px;
   cursor: pointer;
   transition: 3s;
 }
 
 .login-btn:hover {
-  background: #09203E;
+  background: #09203e;
   color: white;
 }
 
@@ -134,8 +136,7 @@ body {
 
 /* Signup Button */
 .signup-btn {
-  background:  #09203E;
-;
+  background: #09203e;
   color: white;
   padding: 10px;
   width: 100%;
@@ -147,8 +148,8 @@ body {
 }
 
 .signup-btn:hover {
-  background:  #174884;
-color: #fff;
+  background: #174884;
+  color: #fff;
 }
 
 /* Separator */
@@ -193,7 +194,7 @@ color: #fff;
   color: black;
   border: 1px solid #ccc;
   transition: 3s;
-font-weight: 700;
+  font-weight: 700;
 }
 
 .apple:hover {
@@ -233,9 +234,7 @@ font-weight: 700;
 /* Responsive Design */
 @media (max-width: 480px) {
   .login-box {
-    width:90%;
- }
+    width: 90%;
+  }
 }
-
-
 </style>

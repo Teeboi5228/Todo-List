@@ -28,12 +28,13 @@ export default {
   mounted() {
     setTimeout(() => {
       this.showCoverPage = false;
-    }, 5000);
+    }, 4000);
   },
 };
 </script>
 
 <style scoped>
+.preloader,
 .coverDisplay {
   position: absolute;
   top: 0;
